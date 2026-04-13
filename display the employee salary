@@ -1,0 +1,73 @@
+#include<iostream>
+using namespace std;
+class employee
+{
+    public:
+    int e_no,salary,net,da;
+    string name;
+    employee()
+    {
+        e_no=0;
+        salary=0;
+        net=0;
+        da=0;
+        name=" ";
+
+    }
+    void getdata()
+    {
+        cout<<"enter your name:";
+        cin.ignore();
+        getline(cin,name);
+
+        cout<<"enter employee no:";
+        cin>>e_no;
+        cout<<"enter basic salary:";
+        cin>>salary;
+        cout<<"enter da:";
+        cin>>da;
+        net=salary+da;
+
+    }
+    void display()
+    {
+        cout<<"employee name:"<<name<<endl;
+        cout<<"employee no:"<<e_no<<endl;
+        cout<<"basic salary:"<<salary<<endl;
+        cout<<"da:"<<da<<endl;
+        cout<<"net salary:"<<net<<endl;
+    }
+};
+int main()
+{
+    employee e[4];
+    cout<<"employee details:"<<endl<<endl;
+    for(int i=0;i<4;i++)
+    {
+      cout<<"employee "<<i+1<<endl;
+      e[i].getdata();
+    }
+    for(int i=0;i<4;i++)
+    {
+        cout<<"employee "<<i+1<<endl;
+        e[i].display();
+    }
+    int max=0,min=0;
+    for(int i=1;i<4;i++)
+    {
+        if(e[i].net>e[max].net)
+        {
+            max=i;
+
+        }
+        if(e[i].net<e[min].net)
+        {
+            min=i;
+        }
+    }
+        cout<<"maximum salary:"<<e[max].net<<endl;
+        cout<<"employee no:"<<e[max].e_no<<endl;
+        cout<<"minimum salary:"<<e[min].net<<endl;
+        cout<<"employee no:"<<e[min].e_no<<endl;
+        return 0;
+    }
