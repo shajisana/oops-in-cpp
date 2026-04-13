@@ -1,0 +1,83 @@
+#include <iostream>
+using namespace std;
+
+template <class T>
+class Matrix {
+    int rows, cols;
+    T mat[10][10];
+public:
+    Matrix(int r = 0, int c = 0) {
+        rows = r;
+        cols = c;
+    }
+    void input() {
+        cout << "Enter elements of " << rows << "x" << cols << " matrix:\n";
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                cin >> mat[i][j];
+            }
+        }
+    }
+    void display() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                cout << mat[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+    Matrix<T> add(Matrix<T> other) {
+        Matrix<T> result(rows, cols);
+        if (rows != other.rows || cols != other.cols) {
+            cout << "Addition not possible!\n";
+            return result;
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result.mat[i][j] = mat[i][j] + other.mat[i][j];
+            }
+        }
+        return result;
+    }
+    Matrix<T> multiply(Matrix<T> other) {
+        Matrix<T> result(rows, other.cols);
+        if (cols != other.rows) {
+            cout << "Multiplication not possible!\n";
+            return result;
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < other.cols; j++) {
+                result.mat[i][j] = 0;
+                for (int k = 0; k < cols; k++) {
+                    result.mat[i][j] += mat[i][k] * other.mat[k][j];
+                }
+            }
+        }
+        return result;
+    }
+};
+
+int main() {
+    int r1, c1, r2, c2;
+
+    cout << "Enter rows and cols for matrix A: ";
+    cin >> r1 >> c1;
+    Matrix<int> A(r1, c1);
+    A.input();
+
+    cout << "Enter rows and cols for matrix B: ";
+    cin >> r2 >> c2;
+    Matrix<int> B(r2, c2);
+    B.input();
+
+    cout << "\nMatrix A:\n"; A.display();
+    cout << "\nMatrix B:\n"; B.display();
+
+    Matrix<int> C = A.add(B);
+    cout << "\nA + B:\n"; C.display();
+
+    Matrix<int> D = A.multiply(B);
+    cout << "\nA * B:\n"; D.display();
+
+    return 0;
+}
