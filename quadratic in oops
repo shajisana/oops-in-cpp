@@ -1,0 +1,41 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+template<class R>
+void value(R a,R b,R c)
+{
+    double d=b*b-4*a*c;
+    if(d>0)
+    {
+        cout<<"roots are real and distinct"<<endl;
+        double r=(-b+sqrt(d))/2*a;
+        double r1=(-b-sqrt(d))/2*a;
+        cout<<"equation:"<<a<<"x2+"<<b<<"x+"<<c<<endl;
+        cout<<"roots:"<<r<<","<<r1<<endl;
+    }
+    else if(d==0)
+    {
+        cout<<"roots are real and equal"<<endl;
+        double r4=(-b+d)/2*a;
+        double r5=(-b-d)/2*a;
+        cout<<"roots:"<<r4<<","<<r5<<endl;
+
+    }
+    else
+    {
+        cout<<"roots are complex and imaginary"<<endl;
+        double e=-1*d;
+        double e1=sqrt(e);
+        double r2=(-b/2*a);
+        double r3=(e1/2*a);
+        cout<<"roots:"<<r2<<"+j"<<r3<<endl;
+        cout<<"roots:"<<r2<<"-j"<<r3<<endl;
+    }
+}
+    int main()
+    {
+        value(1,2,3);
+        value(1.1,2.1,3.1);
+        return 0;
+
+    }
