@@ -1,0 +1,65 @@
+[23bee024@mepcolinux oops]$cat dist.cpp
+#include<iostream>
+using namespace std;
+class dist
+{
+    int m,cm;
+    public:
+    dist(int a,int b)
+    {
+        m=a;
+        cm=b;
+    }
+    dist operator++(int);
+    dist operator--(int);
+    dist operator++()
+    {
+        ++m;
+        ++cm;
+        return dist(m,cm);
+    }
+    dist operator--()
+    {
+        --m;
+        --cm;
+        return dist(m,cm);
+    }
+
+    void print()
+    {
+        cout<<m<<endl;
+        cout<<cm<<endl;
+    }
+};
+dist dist::operator++(int)
+{
+   dist temp(m,cm);
+   m++;
+   cm++;
+    return temp;
+}
+dist dist::operator--(int)
+{
+    dist temp1(m,cm);
+    m--;
+    cm--;
+    return temp1;
+}
+int main()
+{
+    dist d1(5,6);
+
+    dist d2=++d1;
+    cout<<"pre increment:"<<endl;
+    d1.print();
+    dist d3=--d1;
+    cout<<"pre decrement:"<<endl;
+    d1.print();
+    dist d4=d1++;
+    cout<<"post increment:"<<endl;
+    d1.print();
+    dist d5=d1--;
+    cout<<"post decrement:"<<endl;
+    d1.print();
+    return 0;
+}
