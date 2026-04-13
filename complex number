@@ -1,0 +1,64 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+class complex
+    {
+        int real,img;
+        public:
+        complex() {
+        real = 0;
+        img = 0;
+    }
+
+            complex(int x,int y)
+        {
+            real=x;
+            img=y;
+        }
+        void polar(double &r,double &angle)
+        {
+            r=sqrt(real*real+img*img);
+            angle=atan2(img,real);
+            cout<<r<<" angle "<<angle<<endl;
+        }
+        void rect(double r,double angle)
+        {
+            real=r*cos(angle);
+            img=r*sin(angle);
+        }
+        complex operator-(complex &c)
+        {
+            return complex(real-c.real,img-c.img);
+        }
+        complex operator*(complex &c)
+        {
+            double r1,i1,r2,i2;
+            polar(r1,i1);
+            c.polar(r2,i2);
+            double rr1=r1*r2;
+            double ii1=i1+i2;
+            complex temp;
+            temp.rect(rr1,ii1);
+            return temp;
+        }
+        void display()
+        {
+            cout<<real<<"+j("<<img<<")"<<endl;
+        }
+    };
+    int main()
+    {
+        complex c1(3,4);
+        complex c2(4,5);
+        c1.display();
+        c2.display();
+        complex c3=c1-c2;
+        cout<<"difference=";
+        c3.display();
+        cout<<endl;
+        complex c4=c1*c2;
+        cout<<"product=";
+        c4.display();
+        cout<<endl;
+        return 0;
+    }
